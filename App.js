@@ -23,12 +23,14 @@ return (
     <View style={styles.container}>
       {/* <Home/> */}
       <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+       screenOptions={{
+    headerShown: false
+  }}>
         <Stack.Screen
           name="Home"
           component={Home}
-
-
+          Headershown={false}
         />
         <Stack.Screen
           name="Back"

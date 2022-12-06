@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     addcontainer: {
         flex: 1,
         alignItems: 'center',
-        // justifyContent: 'center',
+        justifyContent: 'center',
 
     },
     tfcontainer: {
