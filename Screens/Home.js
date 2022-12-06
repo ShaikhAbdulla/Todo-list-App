@@ -37,8 +37,10 @@ const Home = ({ navigation }) => {
   const route = useRoute();
 
   let Timing = {};
-  if (hr <= 4 && hr >= 20) {
+  if (hr >= 20 ) {
    Timing= Night
+   console.log('Hellooo');
+   console.log(Evening)
 
   } if (hr >= 5 && hr <= 11) {
    Timing= bgimg
@@ -48,8 +50,7 @@ const Home = ({ navigation }) => {
 
   } if (hr >= 17 && hr <= 19) {
    Timing= Evening
-    console.log('Hellooo');
-    console.log(Evening)
+   
 
   }
 
@@ -99,9 +100,9 @@ const Home = ({ navigation }) => {
 
         </View>
         <View style={styles.datelist}>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date2}</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date}</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date1}</Text></TouchableOpacity></View>
+          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date2}th</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date}th</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date1}th</Text></TouchableOpacity></View>
         <View style={styles.line}></View>
         <View style={styles.tasks}>
           <View style={styles.row}>
