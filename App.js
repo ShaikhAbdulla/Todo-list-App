@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './Screens/Home';
-import TextField from './Screens/Textfield';
+// import TextField from './Screens/Textfield';
 
 
 
@@ -32,12 +32,12 @@ return (
           component={Home}
           Headershown={false}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Back"
           component={TextField}
           // header={header}
           // setHeader={setHeader}
-           />
+           /> */}
       </Stack.Navigator>
     </NavigationContainer>
       
