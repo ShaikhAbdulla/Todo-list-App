@@ -270,10 +270,10 @@ padding: 10,
     shadowRadius: 3.84,
 
     elevation: 9,}}>
-              <View style={{ flexDirection: 'row', position: 'absolute', left: 8, top: 5, }}>
+              <View style={{ flexDirection: 'row', position: 'absolute', left: 20, top: 5, }}>
                 <TouchableOpacity onPress={() => {
                   setShow(false)
-                }}><Text style={{ fontSize: 40, color: 'black', transform: [{ rotate: '180deg' }] }}>➔</Text></TouchableOpacity>
+                }}><Text style={{ fontSize: 30, color: 'black', transform: [{ rotate: '180deg' }] }}>➔</Text></TouchableOpacity>
  <View style={styles.tfcontainer}>
                 <View style={styles.fieldcontainer}>
                     <TextInput style={styles.tf} placeholder='Task Heading!!'/>
