@@ -32,12 +32,12 @@ return (
           component={Home}
           Headershown={false}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Back"
           component={TextField}
           // header={header}
           // setHeader={setHeader}
-           />
+           /> */}
       </Stack.Navigator>
     </NavigationContainer>
       

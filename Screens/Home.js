@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image,Modal,TextInput } from 'react-native';
 import cloud from '../Assets/cloud.png';
 import calendar from '../Assets/calendar.png';
 import Afternoon from '../Assets/Afternoon.jpg';
 import Night from '../Assets/Night.jpg';
 import Evening from '../Assets/Evening.jpg';
 import bgimg from '../Assets/bgimg.png';
+import Sun from '../Assets/Sun.png';
+// import { TextInput } from 'react-native-web';
+
+
 
 
 
@@ -16,8 +20,11 @@ import bgimg from '../Assets/bgimg.png';
 // import { Button } from 'react-native-web';
 // import FitImage from 'react-native-fit-image';
 // import bgimg from '.Assets/bgimg';
-
 const Home = ({ navigation }) => {
+const [show, setShow] = useState(false)
+const [heading, setHeading] = useState('')
+const [content, setContent] = useState('')
+
   const dn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   const mon = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   const day = new Date();
@@ -34,13 +41,12 @@ const Home = ({ navigation }) => {
 
 
 
+
   const route = useRoute();
 
   let Timing = {};
-  if (hr >= 20 ) {
+  if ( hr >= 20 ) {
    Timing= Night
-   console.log('Hellooo');
-   console.log(Evening)
 
   } if (hr >= 5 && hr <= 11) {
    Timing= bgimg
@@ -50,16 +56,13 @@ const Home = ({ navigation }) => {
 
   } if (hr >= 17 && hr <= 19) {
    Timing= Evening
-   
+    console.log('Hellooo');
+    console.log(Evening)
 
   }
 
 
-  // const Timing=hr>=20 && hr<=5? Night : Afternoon;
-  // const Timing1=hr>=6 && hr<=11? bgimg : Afternoon;
-  // const Timing2=hr>=17 && hr<=19? Evening : null
-
-  // const Timing1=hr==4 && hr>=4? Night : Afternoon;
+ 
   return (
     <View style={styles.Homecontainer}>
 
@@ -67,8 +70,6 @@ const Home = ({ navigation }) => {
 
         <Image
           style={styles.img}
-
-
           source={Timing}
 
         // Timing || Timing1 ||  Timing2
@@ -94,27 +95,102 @@ const Home = ({ navigation }) => {
             style={styles.cloud}
 
 
-            source={cloud} />
+            source={hr>=12 && hr<=17? Sun:cloud}/>
           <Text style={styles.day}>{d}</Text>
           <Text style={styles.tim}>{date} {month}</Text>
 
         </View>
         <View style={styles.datelist}>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date2}th</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date}th</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.dt}><Text style={styles.date}>{date1}th</Text></TouchableOpacity></View>
+          <TouchableOpacity style={{backgroundColor:hr>=12 && hr<=19?'#FFA812':'#82a1b0',
+    // textAlign: 'center',
+    borderRadius: 25,
+padding: 10,
+    margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.50,
+    shadowRadius: 3.84,
+
+    elevation: 9,
+}}>
+  <Text style={styles.date}>{date2}</Text></TouchableOpacity>
+          <TouchableOpacity style={{
+    backgroundColor:hr>=12 && hr<=19?'#FFA812':'#82a1b0',
+    // textAlign: 'center',
+
+    borderRadius: 25,
+
+    padding: 10,
+    margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.50,
+    shadowRadius: 3.84,
+
+    elevation: 9,
+
+
+
+
+  }}><Text style={styles.date}>{date}</Text></TouchableOpacity>
+          <TouchableOpacity style={{
+    backgroundColor:hr>=12 && hr<=19?'#FFA812':'#82a1b0',
+    // textAlign: 'center',
+
+    borderRadius: 25,
+
+    padding: 10,
+    margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.50,
+    shadowRadius: 3.84,
+
+    elevation: 9,
+
+
+
+
+  }}><Text style={styles.date}>{date1}</Text></TouchableOpacity></View>
         <View style={styles.line}></View>
         <View style={styles.tasks}>
           <View style={styles.row}>
             <View style={styles.tm}><Text>{hr}:{min}</Text></View>
-            <View style={styles.task}><Text style={styles.singletas}>1</Text>
+            <View style={{
+    flexDirection: 'row',
+    margin: 15,
+
+    // textAlign:'center',
+    backgroundColor:hr>=12 && hr<=19?'#FF8C69' : '#B2DFDB',
+    height: 45,
+    width: 45,
+    borderRadius: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.50,
+    shadowRadius: 3.84,
+
+    elevation: 10,
+  }}><Text style={styles.singletas}>1</Text>
               <View style={styles.textcontainer}>
                 <Text style={styles.ttext}>Watching movie!</Text>
                 <Text style={styles.dtext}>need to play cricket to burn 100 calories!</Text>
               </View>
             </View>
           </View>
-          <View style={styles.row}>
+          {/* <View style={styles.row}>
             <View style={styles.tm}><Text>{hr}:{min}</Text></View>
             <View style={styles.task}><Text style={styles.singletas}>2</Text>
               <View style={styles.textcontainer}>
@@ -140,7 +216,7 @@ const Home = ({ navigation }) => {
                 <Text style={styles.dtext}>need to play cricket to burn 100 calories!</Text>
               </View>
             </View>
-          </View>
+          </View> */}
           {/* <View style={styles.row}>
         <View style={styles.tm}><Text>{hr}:{min}</Text></View>
         <View style={styles.task}><Text style={styles.singletas}>5</Text>
@@ -164,14 +240,55 @@ const Home = ({ navigation }) => {
 
 
       <View style={styles.btnContainer}>
-        <TouchableOpacity style={styles.btn} onPress={() => {
+        <TouchableOpacity style={{
+    backgroundColor:hr>=12 && hr<=19?'#FFA812':'#82a1b0',
+    borderRadius: 40,
+    height: 60,
+    width: 60,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.90,
+    shadowRadius: 3.84,
 
-          navigation.navigate('Back')
-        }}>
+    elevation: 9,
+  }} onPress={() => setShow(true)}>
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
+        <Modal
+          transparent={true}
+          visible={show}>
+            <View style={{alignItems:'center',justifyContent:'center',top:150}}>
+          <View style={{height:50,backgroundColor:'white',width:'90%',height:'60%',borderRadius:30,justifyContent:'center',shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.90,
+    shadowRadius: 3.84,
+
+    elevation: 9,}}>
+              <View style={{ flexDirection: 'row', position: 'absolute', left: 20, top: 5, }}>
+                <TouchableOpacity onPress={() => {
+                  setShow(false)
+                }}><Text style={{ fontSize: 30, color: 'black', transform: [{ rotate: '180deg' }] }}>➔</Text></TouchableOpacity>
+ <View style={styles.tfcontainer}>
+                <View style={styles.fieldcontainer}>
+                    <TextInput style={styles.tf} placeholder='Task Heading!!'/>
+                    <TextInput style={styles.tf} placeholder='Content!!'></TextInput>
+                </View>
+                <TouchableOpacity style={styles.btn}><View style={{borderWidth:1,width:100,justifyContent:'center',alignItems:'center',position:'absolute',left:70}}><Text style={{fontSize:30}}>Add</Text></View></TouchableOpacity>
+            </View>
+              </View>
+              </View>
+              </View>
+        </Modal>
       </View>
+      
     </View>
+ 
   );
 }
 
@@ -218,28 +335,28 @@ const styles = StyleSheet.create({
 
 
   },
-  btn: {
-    backgroundColor: '#82a1b0',
-    borderRadius: 40,
-    height: 60,
-    width: 60,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.90,
-    shadowRadius: 3.84,
+  // btn: {
+  //   backgroundColor:hr>=12 && hr<=17?'#FFA812':'#82a1b0',
+  //   borderRadius: 40,
+  //   height: 60,
+  //   width: 60,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 2,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.90,
+  //   shadowRadius: 3.84,
 
-    elevation: 9,
-
-
+  //   elevation: 9,
 
 
 
 
 
-  },
+
+
+  // },
   button: {
     textAlign: 'center',
     fontSize: 40,
@@ -253,28 +370,28 @@ const styles = StyleSheet.create({
 
 
   },
-  dt: {
-    backgroundColor: '#82a1b0',
-    // textAlign: 'center',
+  // dt: {
+  //   backgroundColor:hr>=12 && hr<=17?'#DB2929':'#82a1b0',
+  //   // textAlign: 'center',
 
-    borderRadius: 25,
+  //   borderRadius: 25,
 
-    padding: 10,
-    margin: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.50,
-    shadowRadius: 3.84,
+  //   padding: 10,
+  //   margin: 10,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.50,
+  //   shadowRadius: 3.84,
 
-    elevation: 9,
-
-
+  //   elevation: 9,
 
 
-  },
+
+
+  // },
   date: {
     fontSize: 20,
     textAlign: 'center',
@@ -308,25 +425,25 @@ const styles = StyleSheet.create({
     left: 71,
 
   },
-  task: {
-    flexDirection: 'row',
-    margin: 15,
+  // task: {
+  //   flexDirection: 'row',
+  //   margin: 15,
 
-    // textAlign:'center',
-    backgroundColor: '#B2DFDB',
-    height: 45,
-    width: 45,
-    borderRadius: 25,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.50,
-    shadowRadius: 3.84,
+  //   // textAlign:'center',
+  //   backgroundColor:hr>=12 && hr<=17?'#FF8C69' : '#B2DFDB',
+  //   height: 45,
+  //   width: 45,
+  //   borderRadius: 25,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.50,
+  //   shadowRadius: 3.84,
 
-    elevation: 10,
-  },
+  //   elevation: 10,
+  // },
   singletas: {
 
     marginLeft: 13,
@@ -352,6 +469,7 @@ const styles = StyleSheet.create({
 
   },
   cloud: {
+    left:7,
     width: 60,
     height: 40,
   },
@@ -381,6 +499,26 @@ const styles = StyleSheet.create({
   },
   textcontainer: {
     bottom: 12,
-  }
+  },
+  tfcontainer: {
+    flexDirection: 'row',
+    flexDirection:'column',
+    width:'80%',
+    top:50
+
+},
+tf: {
+    padding: 15,
+    fontSize: 20,
+
+    backgroundColor: '#D1D1D1',
+    width: '95%',
+    borderRadius: 5,
+    height: 50,
+    margin: 5,
+},fieldcontainer: {
+  width:'100%',
+          flexDirection: 'column',
+      }
 });
 export default Home;
