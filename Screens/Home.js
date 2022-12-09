@@ -14,16 +14,24 @@ import Sun from '../Assets/Sun.png';
 
 
 
-
+const aarHeading=[];
+const aarContent=[];
 
 // import ResponsiveImage from "react-native-responsive-image";
 // import { Button } from 'react-native-web';
 // import FitImage from 'react-native-fit-image';
 // import bgimg from '.Assets/bgimg';
+
 const Home = ({ navigation }) => {
+ 
+
 const [show, setShow] = useState(false)
-const [heading, setHeading] = useState('')
-const [content, setContent] = useState('')
+const [heading, setHeading] = useState()
+// const [arrheading, setArrheading] = useState([])
+
+const [content, setContent] = useState()
+// const [arrcontent, setArrcontent] = useState([])
+
 
   const dn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
   const mon = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -36,16 +44,31 @@ const [content, setContent] = useState('')
   const hr = day.getHours();
   const min = day.getMinutes();
 
+// console.log(heading);
+// console.log(content);
+
+const save=()=>{
 
 
+  // setArrheading([...arrheading,heading])
+  // setArrcontent([...arrcontent,content])
+  aarHeading.push(heading.toString());
+  aarContent.push(content.toString());
 
+  // console.log(heading);
+  // console.log(content);
+  setHeading(" ")
+  setContent(" ")
+  console.log(aarHeading);
+  console.log(aarContent);
+}
 
 
 
   const route = useRoute();
 
   let Timing = {};
-  if (hr <= 4 && hr >= 20) {
+  if ( hr >= 20 ) {
    Timing= Night
 
   } if (hr >= 5 && hr <= 11) {
@@ -276,10 +299,10 @@ padding: 10,
                 }}><Text style={{ fontSize: 30, color: 'black', transform: [{ rotate: '180deg' }] }}>➔</Text></TouchableOpacity>
  <View style={styles.tfcontainer}>
                 <View style={styles.fieldcontainer}>
-                    <TextInput style={styles.tf} placeholder='Task Heading!!'/>
-                    <TextInput style={styles.tf} placeholder='Content!!'></TextInput>
+                    <TextInput style={styles.tf} value={heading} onChangeText={(text)=>setHeading(text)} placeholder='Task Heading!!'/>
+                    <TextInput style={styles.tf} value={content} onChangeText={(text)=>setContent(text)} placeholder='Content!!'></TextInput>
                 </View>
-                <TouchableOpacity style={styles.btn}><View style={{borderWidth:1,width:100,justifyContent:'center',alignItems:'center',position:'absolute',left:70}}><Text style={{fontSize:30}}>Add</Text></View></TouchableOpacity>
+                <TouchableOpacity style={styles.btn} onPress={()=>save()}><View style={{borderWidth:1,width:100,justifyContent:'center',alignItems:'center',position:'absolute',left:70}}><Text style={{fontSize:30}}>Add</Text></View></TouchableOpacity>
             </View>
               </View>
               </View>
